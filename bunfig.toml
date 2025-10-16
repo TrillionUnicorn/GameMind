@@ -1,0 +1,31 @@
+# Bun Configuration for GameMind
+
+[install]
+# Use exact versions for reproducible builds
+exact = true
+
+# Prefer offline cache
+prefer-offline = true
+
+# Auto-install peer dependencies
+auto = true
+
+[install.cache]
+# Cache directory
+dir = ".bun-cache"
+
+# Disable cache for development
+disable = false
+
+[run]
+# Enable hot reload
+hot = true
+
+# Shell to use for scripts
+shell = "bash"
+
+[test]
+# Test runner configuration
+preload = ["./tests/setup.ts"]
+coverage = true
+

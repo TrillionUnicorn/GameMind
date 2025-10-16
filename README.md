@@ -243,16 +243,62 @@ We're revolutionizing intelligent gaming, and we need your help!
 
 ---
 
+## 🚀 **Quick Start for Developers**
+
+### Prerequisites
+- **Node.js** 22+ (LTS recommended)
+- **npm** 10+ or **pnpm** 8+
+- **Git** for version control
+
+### Installation & Setup
+```bash
+# Clone the repository
+git clone https://github.com/TrillionUnicorn/GameMind.git
+cd GameMind
+
+# Install dependencies
+npm install
+
+# Copy environment variables
+cp .env.example .env
+
+# Start development server
+npm run dev
+
+# Open in browser
+open http://localhost:5173
+```
+
+### Available Scripts
+```bash
+npm run dev          # Start development server
+npm run build        # Build for production
+npm run preview      # Preview production build
+npm run check        # Type check
+npm run lint         # Lint code
+npm run format       # Format code with Prettier
+```
+
+### Tech Stack
+- **Frontend**: Svelte 5 + SvelteKit 2
+- **Styling**: Tailwind CSS v4+
+- **Animations**: GSAP, Svelte-Motion, Lottie
+- **TypeScript**: Full type safety
+- **Game Engines**: Custom AI engines for each game
+- **Deployment**: Docker + Docker Compose
+
+---
+
 ## 📞 **Start Playing Today**
 
 ### 🚀 **Play Instantly**
 Jump into intelligent gaming right now!
 
-**👉 [Play in Browser](https://play.gamemind.com)**
+**👉 [Play in Browser](http://localhost:5173/play)**
 - ✅ **No Download Required**: Play instantly in any web browser
-- ✅ **All Games Available**: Chess, Mahjong, and Go ready to play
+- ✅ **Chess Available**: Fully functional chess game with AI
 - ✅ **Adaptive AI**: Experience intelligent opponents immediately
-- ✅ **Free to Start**: No credit card required, play 10 games daily
+- ✅ **Free to Start**: No credit card required, unlimited games
 
 ### 📱 **Mobile Apps**
 Take GameMind anywhere with our mobile applications:

@@ -1,0 +1,75 @@
+version: '3.8'
+
+services:
+  # GameMind Web Application
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: gamemind-app
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - DATABASE_URL=postgresql://gamemind:gamemind@postgres:5432/gamemind
+      - REDIS_URL=redis://redis:6379
+    depends_on:
+      - postgres
+      - redis
+    restart: unless-stopped
+    networks:
+      - gamemind-network
+
+  # PostgreSQL Database
+  postgres:
+    image: timescale/timescaledb:latest-pg16
+    container_name: gamemind-postgres
+    environment:
+      - POSTGRES_USER=gamemind
+      - POSTGRES_PASSWORD=gamemind
+      - POSTGRES_DB=gamemind
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+    networks:
+      - gamemind-network
+
+  # Redis Cache
+  redis:
+    image: redis:7-alpine
+    container_name: gamemind-redis
+    command: redis-server --appendonly yes
+    volumes:
+      - redis-data:/data
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
+    networks:
+      - gamemind-network
+
+  # Nginx Reverse Proxy (Optional)
+  nginx:
+    image: nginx:alpine
+    container_name: gamemind-nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./ssl:/etc/nginx/ssl:ro
+    depends_on:
+      - app
+    restart: unless-stopped
+    networks:
+      - gamemind-network
+
+volumes:
+  postgres-data:
+  redis-data:
+
+networks:
+  gamemind-network:
+    driver: bridge
+
