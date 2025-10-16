@@ -1,0 +1,112 @@
+name: gamemind
+description: GameMind - AI Gaming Platform Mobile App
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.2.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # State Management
+  riverpod: ^2.4.0
+  flutter_riverpod: ^2.4.0
+  riverpod_generator: ^2.3.0
+
+  # Networking
+  dio: ^5.3.0
+  retrofit: ^4.1.0
+  web_socket_channel: ^2.4.0
+
+  # Local Storage
+  hive: ^2.2.0
+  hive_flutter: ^1.1.0
+  shared_preferences: ^2.2.0
+
+  # Firebase
+  firebase_core: ^2.24.0
+  firebase_auth: ^4.14.0
+  firebase_messaging: ^14.6.0
+  cloud_firestore: ^4.13.0
+
+  # UI
+  flutter_screenutil: ^5.9.0
+  get: ^4.6.0
+  go_router: ^12.0.0
+  google_fonts: ^6.1.0
+  flutter_svg: ^2.0.0
+  cached_network_image: ^3.3.0
+  shimmer: ^3.0.0
+  lottie: ^2.7.0
+
+  # Forms & Validation
+  formz: ^0.6.0
+  email_validator: ^2.1.0
+
+  # Payment
+  in_app_purchase: ^3.1.0
+  in_app_purchase_android: ^0.3.0
+  in_app_purchase_storekit: ^0.3.0
+  stripe_flutter: ^10.0.0
+
+  # Utils
+  intl: ^0.19.0
+  uuid: ^4.0.0
+  logger: ^2.0.0
+  connectivity_plus: ^5.0.0
+  device_info_plus: ^9.1.0
+  package_info_plus: ^5.0.0
+  url_launcher: ^6.2.0
+  share_plus: ^7.2.0
+  permission_handler: ^11.4.0
+
+  # Analytics
+  firebase_analytics: ^10.7.0
+  sentry_flutter: ^7.8.0
+
+  # Testing
+  mockito: ^5.4.0
+  mocktail: ^1.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^3.0.0
+  build_runner: ^2.4.0
+  hive_generator: ^2.0.0
+  retrofit_generator: ^7.0.0
+  riverpod_generator: ^2.3.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/
+    - assets/icons/
+    - assets/animations/
+    - assets/LICENSES.md
+
+  fonts:
+    - family: GoogleSans
+      fonts:
+        - asset: assets/fonts/GoogleSans-Regular.ttf
+        - asset: assets/fonts/GoogleSans-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/GoogleSans-Medium.ttf
+          weight: 500
+
+  # Splash screen
+  # flutter_native_splash:
+  #   color: "#ffffff"
+  #   image: assets/images/splash.png
+
+  # App icon
+  # flutter_launcher_icons:
+  #   android: "launcher_icon"
+  #   ios: true
+  #   image_path: "assets/images/app_icon.png"
+
