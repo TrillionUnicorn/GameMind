@@ -113,13 +113,11 @@ class APIClient {
     endpoint: string,
     options: RequestInit = {}
   ): Promise<T> {
-    const headers: HeadersInit = {
-      'Content-Type': 'application/json',
-      ...options.headers,
-    };
+    const headers = new Headers(options.headers);
+    headers.set('Content-Type', 'application/json');
 
     if (this.token) {
-      headers['Authorization'] = `Bearer ${this.token}`;
+      headers.set('Authorization', `Bearer ${this.token}`);
     }
 
     try {
@@ -133,7 +131,9 @@ class APIClient {
         const refreshed = await this.refreshAccessToken();
         if (refreshed) {
           // Retry original request with new token
-          headers['Authorization'] = `Bearer ${this.token}`;
+          if (this.token) {
+            headers.set('Authorization', `Bearer ${this.token}`);
+          }
           const retryResponse = await fetch(`${this.baseURL}${endpoint}`, {
             ...options,
             headers,
@@ -328,4 +328,3 @@ class APIClient {
 }
 
 export const api = new APIClient(API_URL);
-

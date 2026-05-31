@@ -13,10 +13,10 @@
   import { makeMove } from '$lib/engines/chess/moves';
   import type { Board, Move } from '$lib/engines/chess/types';
 
-  let gameId = $page.params.id;
-  let game: any = null;
-  let loading = true;
-  let error = '';
+  let gameId = $derived($page.params.id ?? '');
+  let game = $state<any>(null);
+  let loading = $state(true);
+  let error = $state('');
 
   // Replay state
   let currentMoveIndex = $state(0);
@@ -35,6 +35,10 @@
     error = '';
 
     try {
+      if (!gameId) {
+        throw new Error('Missing game id');
+      }
+
       const { game: gameData } = await api.getGame(gameId);
       game = gameData;
       
@@ -192,7 +196,7 @@
           <!-- Chess Board -->
           <div class="lg:col-span-2">
             <div class="bg-white/10 p-6 rounded-lg border border-white/20 backdrop-blur-lg">
-              <ChessBoard {board} playerColor="white" onMove={() => {}} disabled={true} />
+              <ChessBoard {board} playerColor="white" isPlayerTurn={false} onMove={() => {}} />
 
               <!-- Playback Controls -->
               <div class="mt-6 space-y-4">
@@ -379,4 +383,3 @@
     border: none;
   }
 </style>
-

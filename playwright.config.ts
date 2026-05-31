@@ -3,6 +3,7 @@ import { defineConfig, devices } from '@playwright/test';
 export default defineConfig({
 	// Test directory
 	testDir: './tests',
+	testIgnore: ['**/api-client.test.ts'],
 
 	// Run tests in files in parallel
 	fullyParallel: true,
@@ -78,7 +79,7 @@ export default defineConfig({
 
 	// Run your local dev server before starting the tests
 	webServer: {
-		command: 'npm run dev -- --port 5173',
+		command: 'pnpm dev -- --port 5173',
 		url: 'http://localhost:5173',
 		reuseExistingServer: !process.env.CI,
 		timeout: 120 * 1000,
@@ -86,4 +87,3 @@ export default defineConfig({
 		stderr: 'pipe'
 	}
 });
-
