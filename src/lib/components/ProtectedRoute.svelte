@@ -22,32 +22,28 @@
   });
 
   $: if (mounted && !$isLoading) {
-    // Check authentication
+    authorized = false;
+
     if (!$isAuthenticated) {
       const returnUrl = $page.url.pathname + $page.url.search;
       goto(`${redirectTo}?returnUrl=${encodeURIComponent(returnUrl)}`);
-      return;
-    }
-
-    // Check tier requirement
-    if (requireTier) {
+    } else if (requireTier) {
       const tierLevels = { free: 0, pro: 1, master: 2 };
       const userTierLevel = tierLevels[$authStore.user?.tier as keyof typeof tierLevels] || 0;
       const requiredTierLevel = tierLevels[requireTier];
 
       if (userTierLevel < requiredTierLevel) {
         goto('/pricing');
-        return;
+      } else if (requireRole && $authStore.user?.role !== requireRole) {
+        goto('/');
+      } else {
+        authorized = true;
       }
-    }
-
-    // Check role requirement
-    if (requireRole && $authStore.user?.role !== requireRole) {
+    } else if (requireRole && $authStore.user?.role !== requireRole) {
       goto('/');
-      return;
+    } else {
+      authorized = true;
     }
-
-    authorized = true;
   }
 </script>
 
@@ -61,4 +57,3 @@
 {:else if authorized}
   <slot />
 {/if}
-

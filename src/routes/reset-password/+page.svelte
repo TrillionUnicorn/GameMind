@@ -172,7 +172,7 @@
         <!-- Submit Button -->
         <button
           type="submit"
-          disabled={loading || !token || (password && confirmPassword && password !== confirmPassword)}
+          disabled={loading || !token || Boolean(password && confirmPassword && password !== confirmPassword)}
           class="w-full bg-red-500 hover:bg-red-600 text-white font-bold py-3 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed transition-all transform hover:scale-[1.02] active:scale-[0.98]"
         >
           {#if loading}
@@ -198,4 +198,3 @@
     {/if}
   </div>
 </div>
-
