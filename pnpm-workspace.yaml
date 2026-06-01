@@ -1,0 +1,9 @@
+packages:
+  - .
+allowBuilds:
+  esbuild: set this to true or false
+overrides:
+  cookie: ^0.7.2
+  postcss: ^8.5.15
+  dompurify: ^3.4.0
+  "@hono/node-server": ^1.19.13
